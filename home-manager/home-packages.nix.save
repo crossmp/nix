@@ -1,0 +1,16 @@
+{ pkgs, ... }:
+
+{
+  home.packages = with pkgs; [
+    neofetch
+    htop
+    btop
+    bat
+    firefox
+    tree
+    vim
+    neovim
+    wget
+    vscode
+  ];
+}

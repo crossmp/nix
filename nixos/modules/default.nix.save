@@ -1,0 +1,10 @@
+{
+  imports = [
+    ./audio.nix
+    ./boot.nix
+    ./hyprland.nix
+    ./kernel.nix
+    ./net.nix
+    ./nix.nix
+  ];
+}
