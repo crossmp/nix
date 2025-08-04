@@ -5,5 +5,6 @@
     ./alacritty.nix
     ./waybar
     ./tmux.nix
+    #./nixvim.nix
   ];
 }
