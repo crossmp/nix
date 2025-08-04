@@ -4,5 +4,6 @@
     ./hyprland
     ./alacritty.nix
     ./waybar
+    ./tmux.nix
   ];
 }
