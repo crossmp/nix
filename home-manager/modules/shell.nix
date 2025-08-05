@@ -16,16 +16,16 @@
       
       # SUGGESTED ADDITIONS
       # Update flake inputs (this updates all your packages)
-      upd = "nix flake update ~/nix && sudo nixos-rebuild switch --flake ~/nix#nixos-laptop && home-manager switch --flake ~/nix#matt";
+      #upd = "nix flake update ~/nix && sudo nixos-rebuild switch --flake ~/nix#nixos-laptop && home-manager switch --flake ~/nix#matt";
       
       # Just update flake lock file
-      updlock = "nix flake update ~/nix";
+      #updlock = "nix flake update ~/nix";
       
       # System rebuild with boot (safer for major updates)
-      sboot = "sudo nixos-rebuild boot --flake ~/nix#nixos-laptop";
+      #sboot = "sudo nixos-rebuild boot --flake ~/nix#nixos-laptop";
       
       # Check what would be updated without building
-      check = "nix flake show ~/nix";
+      #check = "nix flake show ~/nix";
        
     };
   };

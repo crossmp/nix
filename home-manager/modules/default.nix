@@ -6,6 +6,6 @@
     ./waybar
     ./tmux.nix
     ./nixvim.nix
-    #./stylix.nix
+    ./stylix.nix
   ];
 }

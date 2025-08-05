@@ -21,9 +21,9 @@
 
       # Resizeing windows                   X  Y
       "$mainMod CTRL, H,  resizeactive, -60 0"
-      "$mainMod CTRL, J, resizeactive,  60 0"
+      "$mainMod CTRL, J,  resizeactive,  0  60"
       "$mainMod CTRL, K,    resizeactive,  0 -60"
-      "$mainMod CTRL, L,  resizeactive,  0  60"
+      "$mainMod CTRL, L, resizeactive,  60 0"
 
       # Switching workspaces
       "$mainMod, 1, workspace, 1"
