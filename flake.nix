@@ -23,6 +23,7 @@
     };
   };
 
+  # MULTI USER SUPPORT STILL NEEDS WORK
   outputs = { self, nixpkgs, home-manager, disko, ... }@inputs: let
       system = "x86_64-linux";
       nixosVersion = "25.05"; # EDIT VERSION
@@ -40,7 +41,11 @@
 
       makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
         system = system;
-        specialArgs = { inherit inputs stateVersion hostname users; };
+        specialArgs = { 
+          inherit inputs stateVersion hostname users;
+          # MAY NEED EDITING
+          user = builtins.head users;
+        };
         modules = [ 
           ./hosts/${hostname}/configuration.nix
           disko.nixosModules.disko

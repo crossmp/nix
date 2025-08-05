@@ -10,8 +10,10 @@
 
   stylix = {
     enable = true;
+
+    #base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
     
-    colorschemes.catppuccin.enable = true;
-    plugins.lualine.enable = true;
+    #colorschemes.catppuccin.enable = true;
+    #plugins.lualine.enable = true;
   };
 }
