@@ -1,8 +1,10 @@
 {
-  description = "My System Flake Config";
+  description = "My system flake config";
 
   inputs = {
+    # Unstable packages - EDIT VERSIONS
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,26 +17,49 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, nixvim }@inputs: 
-    let
+  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs: let
       system = "x86_64-linux";
-    in
-  {
-    nixosConfigurations.nixos-laptop = nixpkgs.lib.nixosSystem {
-      inherit system;
-      modules = [ 
-        ./hosts/laptop/configuration.nix
-        disko.nixosModules.disko
+      nixosVersion = "25.05"; # EDIT VERSION
+      # ADD USERS
+      users = [ 
+        "matt"
+        #"test"
       ];
-    };
-    homeConfigurations.matt = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.${system};
-      modules = [ 
-        ./home-manager/home.nix
+      # ADD HOSTS
+      hosts = [
+        { hostname = "nixos-laptop"; stateVersion = nixosVersion; }
+        { hostname = "nixos-server"; stateVersion = nixosVersion; }
+      ];
+      homeStateVersion = nixosVersion;
+
+      makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
+        system = system;
+        specialArgs = { inherit inputs stateVersion hostname users; };
+        modules = [ 
+          ./hosts/${hostname}/configuration.nix
+          disko.nixosModules.disko
         ];
-    };
+      };
+  in {
+    nixosConfigurations = nixpkgs.lib.foldl' (configs: host:
+      configs // {
+        "${host.hostname}" = makeSystem { inherit (host) hostname stateVersion; };
+      }) {} hosts;
+
+    # ADDITIONAL USER CAPABILITY ???
+    homeConfigurations = nixpkgs.lib.genAttrs users (user: 
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        extraSpecialArgs = { inherit inputs homeStateVersion user; };
+        modules = [ ./home-manager/home.nix ];
+      }
+    );
   };
 }
 
