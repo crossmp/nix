@@ -6,12 +6,12 @@
     ./kernel.nix
     ./net.nix
     ./nix.nix
-  #  ./env.nix
+    ./env.nix
     ./user.nix
     ./zram.nix
     ./locale.nix
     ./nvidia.nix
-  #  ./asus-laptop.nix
+    ./asus-laptop.nix
     ./bluetooth.nix
     ./tlp.nix
     ./home-manager.nix
