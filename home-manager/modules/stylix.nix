@@ -12,13 +12,13 @@
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
 
-    #targets = {
-    #  neovim.enable = false;
-    #  waybar.enable = false;
-    #  wofi.enable = false;
-    #  hyprland.enable = false;
-    #  hyprlock.enable = false;
-    #};
+    targets = {
+      neovim.enable = false;
+      waybar.enable = false;
+      wofi.enable = false;
+      hyprland.enable = false;
+      hyprlock.enable = false;
+    };
 
     cursor = {
       name = "DMZ-Black";

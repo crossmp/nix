@@ -6,7 +6,7 @@
     ./kernel.nix
     ./net.nix
     ./nix.nix
-    ./timezone.nix
+    ./env.nix
     ./user.nix
     ./zram.nix
     ./locale.nix

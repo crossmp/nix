@@ -7,7 +7,15 @@
     firefox
     vscode
     yazi
+
     spotify-player
+
+    wev
+    #brightnessctl
+
+    hypridle
+    hyprlock
     hyprpicker
+    grimblast
     ];
 }

@@ -44,10 +44,10 @@
         border_size = 2;
       };
 
-      #animations = {
-      #  enable = false;
+      animations = {
+        enabled = false;
       #  #duration = 0.1;
-      #};
+      };
     };
   };
 }
