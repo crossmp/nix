@@ -91,12 +91,12 @@
       ", XF86AudioMicMute,      exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
       ", XF86MonBrightnessUp,   exec, brightnessctl -e4 -n2 set 5%+"
       ", XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
-      ", XF86Sleep, exec, loginctl lock-session"
+      #", XF86Sleep, exec, loginctl lock-session"
       # screencap
       #","
       # battery limit - TEST
-      ", XF86Launch3, exec, asusctl -c 60"
-      "SHIFT, XF86Launch3, exec, asusctl -c 100"
+      #", XF86Launch3, exec, asusctl -c 60"
+      #"SHIFT, XF86Launch3, exec, asusctl -c 100"
 
       # TODO POWER PROFILES / KEYOARD BACKLIGHT
     ];
