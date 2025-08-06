@@ -85,20 +85,32 @@
 
     bindel = [
       # Laptop Function Keys
+      # F1 - mute
+      # F2 - backlight up
+      # F3 - backlight down
+      # F4 - backlight mode cycle
+      # F5 - power profile cycle
+      # F6 - screen cap
+      # F7 - brightness up
+      # F8 - brightness down
+      # F9 - screen mirroring
+      # F10 - touchpad toggle
+      # F11 - sleep
+      # F12 - airplane mode
+      # Extras
+      # VolUp VolDown MicMute Controll
+
       ", XF86AudioRaiseVolume,  exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
       ", XF86AudioLowerVolume,  exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
       ", XF86AudioMute,         exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ", XF86AudioMicMute,      exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
       ", XF86MonBrightnessUp,   exec, brightnessctl -e4 -n2 set 5%+"
       ", XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
+      
       #", XF86Sleep, exec, loginctl lock-session"
-      # screencap
-      #","
-      # battery limit - TEST
       #", XF86Launch3, exec, asusctl -c 60"
       #"SHIFT, XF86Launch3, exec, asusctl -c 100"
 
-      # TODO POWER PROFILES / KEYOARD BACKLIGHT
     ];
   };
 }
