@@ -11,7 +11,7 @@
       "$mainMod, V, togglefloating"
 
       # Horkeys - Unique
-      "$mainMod, P, exec, hyprpicker -an"
+      #"$mainMod, P, exec, hyprpicker -an"
 
       # TESTING
       #"$mainMod SHIFT, L, exec, loginctl lock-session"
@@ -69,12 +69,24 @@
       "$mainMod SHIFT, 0, movetoworkspace, 10"
 
       # Example special workspace (scratchpad)
-      "$mainMod, S, togglespecialworkspace, magic"
-      "$mainMod SHIFT, S, movetoworkspace, special:magic"
+      #"$mainMod, S, togglespecialworkspace, magic"
+      #"$mainMod SHIFT, S, movetoworkspace, special:magic"
       
       # Scroll through existing workspaces with mainMod + scroll
       "$mainMod, mouse_down, workspace, e+1"
       "$mainMod, mouse_up, workspace, e-1"
+
+      # Test binds to catch whatever Fn+F6 and Fn+F9 are sending
+      #"$mainMod, S, exec, notify-send 'Caught Super+S (maybe Fn+F6?)'"
+      "$mainMod SHIFT, S, exec, notify-send 'Caught Super+Shift+S'"
+      "$mainMod, P, exec, notify-send 'Caught Super+P (maybe Fn+F9?)'"
+      #"$mainMod SHIFT, P, exec, notify-send 'Caught Super+Shift+P'"
+
+      # Try other possible combinations
+      #"CTRL, S, exec, notify-send 'Caught Ctrl+S'"
+      #"CTRL, P, exec, notify-send 'Caught Ctrl+P'"
+      #"ALT, S, exec, notify-send 'Caught Alt+S'"
+      #"ALT, P, exec, notify-send 'Caught Alt+P'"
     ];
 
     bindm = [

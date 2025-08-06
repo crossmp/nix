@@ -18,5 +18,8 @@
 
     hyprpicker
     grimblast
+
+    evtest
+    #input-utils
     ];
 }

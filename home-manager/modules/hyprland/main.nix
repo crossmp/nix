@@ -48,6 +48,21 @@
         enabled = false;
       #  #duration = 0.1;
       };
+
+      input = {
+        kb_layout = "us";             # Force US keyboard layout
+        kb_variant = "";              # No variant
+        kb_model = "";                # Auto-detect keyboard model
+        kb_options = "";              # No special options
+        kb_rules = "";                # No special rules
+        
+        follow_mouse = 1;
+        touchpad = {
+          natural_scroll = false;
+        };
+        
+        sensitivity = 0;              # -1.0 - 1.0, 0 means no modification
+      };
     };
   };
 }
