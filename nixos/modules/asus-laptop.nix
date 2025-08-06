@@ -1,6 +1,5 @@
 {
-  services.asusd = {
+  services.asusctl = {
     enable = true;
-    enableUserService = true;
   };
 }

@@ -4,6 +4,9 @@
       # Hotkeys - Main
       "$mainMod, Q, exec, $terminal"
       "$mainMod, D, exec, $browser"
+      "$mainMod, D, exec, $menu --show drun"
+      "$mainMod, P, exec, hyprpicker -an"
+      "$mainMod, L, exec, loginctl lock-session"
       "$mainMod, C, killactive"
       "$mainMod, F, fullscreen"
 

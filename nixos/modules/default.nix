@@ -13,5 +13,6 @@
     ./nvidia.nix
     ./asus-laptop.nix
     ./bluetooth.nix
+    ./tlp.nix
   ];
 }

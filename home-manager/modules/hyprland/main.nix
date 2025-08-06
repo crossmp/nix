@@ -27,7 +27,7 @@
       "$terminal" = "alacritty";
       "$browser" = "firefox";
       #"$fileManager" = "nautilus";
-      #"$menu" = "wofi";
+      "$menu" = "wofi";
 
       # Monitors
       monitor = [

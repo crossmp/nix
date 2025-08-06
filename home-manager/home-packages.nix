@@ -7,6 +7,7 @@
     firefox
     vscode
     yazi
-    #neovim
+    spotify-player
+    hyprpicker
     ];
 }
