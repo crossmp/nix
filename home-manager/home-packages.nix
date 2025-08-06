@@ -10,11 +10,12 @@
 
     spotify-player
 
-    wev
-    #brightnessctl
+    #cliphist
+    #wl-clipboard
 
-    hypridle
-    hyprlock
+    wev
+    brightnessctl
+
     hyprpicker
     grimblast
     ];

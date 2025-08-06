@@ -14,5 +14,6 @@
     ./asus-laptop.nix
     ./bluetooth.nix
     ./tlp.nix
+    ./home-manager.nix
   ];
 }
