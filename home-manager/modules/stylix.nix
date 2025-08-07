@@ -5,6 +5,18 @@
   # Fonts
   home.packages = with pkgs; [
     font-awesome
+    # TESTING
+    dejavu_fonts
+    jetbrains-mono
+    noto-fonts
+    noto-fonts-lgc-plus
+    texlivePackages.hebrew-fonts
+    noto-fonts-emoji
+    font-awesome
+    powerline-fonts
+    powerline-symbols
+    nerd-fonts.symbols-only
+
   ];
   #fonts.fontconfig.enable = true;  
 
@@ -12,13 +24,13 @@
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
 
-    #targets = {
-    #  neovim.enable = false;
-    #  waybar.enable = false;
-    #  wofi.enable = false;
-    #  hyprland.enable = false;
-    #  hyprlock.enable = false;
-    #};
+    targets = {
+      nixvim.enable = false;
+      waybar.enable = false;
+      wofi.enable = false;
+      hyprland.enable = false;
+      hyprlock.enable = false;
+    };
 
     cursor = {
       name = "DMZ-Black";

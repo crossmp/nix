@@ -9,13 +9,18 @@
       "$mainMod, C, killactive"
       "$mainMod, F, fullscreen"
       "$mainMod, V, togglefloating"
+      "$mainMod SHIFT, C, exit"
+      
+      "$mainMod, P, exec, hyprpicker -an"
+      "$mainMod, B, exec, pkill -SIGUSR2 waybar"      # Reload waybar
+      "$mainMod SHIFT, B, exec, pkill -SIGUSR1 waybar" # Toggle waybar
 
-      # Horkeys - Unique
-      #"$mainMod, P, exec, hyprpicker -an"
-
-      # TESTING
-      #"$mainMod SHIFT, L, exec, loginctl lock-session"
-
+      # BROKEN fn+F Keys
+      "$mainMod SHIFT, S, exec, grimblast --notify --freeze copysave area"                   # Fn+F6 → screenshot
+      #"$mainMod, P, exec, wdisplays"                                                        # Fn+F9 → display settings
+      #"CTRL $mainMod, bracketright, exec, xinput disable 'ASUE1209:00 04F3:319B Touchpad'"  # Fn+F10 → disable touchpad
+      # NOTE fn+F5 & fn+F12 are fully dead
+      
       # Window Focus
       "$mainMod, H, movefocus, l"
       "$mainMod, L, movefocus, r"
@@ -69,24 +74,12 @@
       "$mainMod SHIFT, 0, movetoworkspace, 10"
 
       # Example special workspace (scratchpad)
-      #"$mainMod, S, togglespecialworkspace, magic"
-      #"$mainMod SHIFT, S, movetoworkspace, special:magic"
+      "$mainMod, TAB, togglespecialworkspace, magic"
+      "$mainMod SHIFT, TAB, movetoworkspace, special:magic"
       
       # Scroll through existing workspaces with mainMod + scroll
       "$mainMod, mouse_down, workspace, e+1"
       "$mainMod, mouse_up, workspace, e-1"
-
-      # Test binds to catch whatever Fn+F6 and Fn+F9 are sending
-      #"$mainMod, S, exec, notify-send 'Caught Super+S (maybe Fn+F6?)'"
-      "$mainMod SHIFT, S, exec, notify-send 'Caught Super+Shift+S'"
-      "$mainMod, P, exec, notify-send 'Caught Super+P (maybe Fn+F9?)'"
-      #"$mainMod SHIFT, P, exec, notify-send 'Caught Super+Shift+P'"
-
-      # Try other possible combinations
-      #"CTRL, S, exec, notify-send 'Caught Ctrl+S'"
-      #"CTRL, P, exec, notify-send 'Caught Ctrl+P'"
-      #"ALT, S, exec, notify-send 'Caught Alt+S'"
-      #"ALT, P, exec, notify-send 'Caught Alt+P'"
     ];
 
     bindm = [
@@ -96,33 +89,13 @@
     ];
 
     bindel = [
-      # Laptop Function Keys
-      # F1 - mute
-      # F2 - backlight up
-      # F3 - backlight down
-      # F4 - backlight mode cycle
-      # F5 - power profile cycle
-      # F6 - screen cap
-      # F7 - brightness up
-      # F8 - brightness down
-      # F9 - screen mirroring
-      # F10 - touchpad toggle
-      # F11 - sleep
-      # F12 - airplane mode
-      # Extras
-      # VolUp VolDown MicMute Controll
-
-      #", XF86AudioRaiseVolume,  exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-      #", XF86AudioLowerVolume,  exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-      #", XF86AudioMute,         exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-      #", XF86AudioMicMute,      exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-      #", XF86MonBrightnessUp,   exec, brightnessctl -e4 -n2 set 5%+"
-      #", XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
-      
-      #", XF86Sleep, exec, loginctl lock-session"
-      #", XF86Launch3, exec, asusctl -c 60"
-      #"SHIFT, XF86Launch3, exec, asusctl -c 100"
-
+      ", XF86AudioRaiseVolume,  exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+      ", XF86AudioLowerVolume,  exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+      ", XF86AudioMute,         exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      ", XF86AudioMicMute,      exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+      ", XF86MonBrightnessUp,   exec, brightnessctl -e4 -n2 set 5%+"
+      ", XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
+      ", XF86Launch3,           exec, rog-control-center" 
     ];
   };
 }

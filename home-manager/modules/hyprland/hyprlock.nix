@@ -1,6 +1,7 @@
-{
+{ config, pkgs, user, ... }: {
   programs.hyprlock = {
     enable = true;
+
     settings = {
       general = {
         disable_loading_bar = true;
@@ -9,37 +10,36 @@
         no_fade_in = false;
       };
 
-      label = {
-        text = "$TIME";
-        font_size = 96;
-        font_family = "JetBrains Mono";
-        color = "rgba(235, 219, 178, 1.0)";
-        position = "0, 600";
-        halign = "center";
-        walign = "center";
-
-        shadow_passes = 1;
-      };
-
       background = [
         {
-          path = "screenshot";
+          path = "screenshot"; # Blur screen contents at time of lock
           blur_passes = 3;
           blur_size = 8;
         }
       ];
 
+      label = [
+        {
+          text = "$TIME";
+          font_size = 72;
+          font_family = "JetBrainsMono Nerd Font";
+          color = "rgba(235, 219, 178, 1.0)";
+          position = "0, -120";
+          halign = "center";
+          walign = "center";
+          shadow_passes = 2;
+        }
+      ];
+
       input-field = [
         {
-          size = "200, 50";
-          position = "0, -80";
-          monitor = "";
+          size = "250, 60";
+          position = "0, 100";
           dots_center = true;
           font_color = "rgb(235, 219, 178)";
-          inner_color = "rgb(40, 40, 40)";
-          outer_color = "rgb(60, 56, 54)";
-          outline_thickness = 5;
-          placeholder_text = "sussy baka";
+          inner_color = "rgba(40, 40, 40, 0.6)";
+          outer_color = "rgba(60, 56, 54, 0.9)";
+          outline_thickness = 4;
           shadow_passes = 1;
         }
       ];

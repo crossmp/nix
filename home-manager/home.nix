@@ -17,9 +17,4 @@
     LIBVA_DRIVER_NAME = "nvidia";
     MOZ_DISABLE_RDD_SANDBOX = "1"; # Potentially needed for Firefox
   };
-
-  #programs.dunst = {
-  #  enable = true;
-  #};
-
 }
