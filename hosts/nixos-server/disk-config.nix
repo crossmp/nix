@@ -3,7 +3,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/disk/by-id/nvme-Micron_2400_MTFDKBA512QFM_23184066D65E";
+        device = "/dev/disk/by-id/ata-CT240BX500SSD1_1920E182DD89";
         content = {
           type = "gpt";
           partitions = {
@@ -11,7 +11,7 @@
               priority = 1;
               name = "ESP";
               start = "1M";
-              end = "128M";
+              end = "1G";
               type = "EF00";
               content = {
                 type = "filesystem";

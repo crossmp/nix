@@ -1,19 +1,23 @@
-{
+{ hostname, ... }: {
   imports = [
-    ./audio.nix
     ./boot.nix
-    ./hyprland.nix
     ./kernel.nix
-    ./net.nix
-    ./nix.nix
-    ./env.nix
-    ./user.nix
-    ./zram.nix
+    ./home-manager.nix
     ./locale.nix
+    ./user.nix
+    ./nix.nix
+    ./ssh.nix
+  ] ++ (if hostname == "nixos-server" then [
+
+  ] else if hostname == "nixos-laptop" then [
+    ./audio.nix
+    ./hyprland.nix
+    ./net.nix
+    ./env.nix
+    ./zram.nix
     ./nvidia.nix
     ./asus-laptop.nix
     ./bluetooth.nix
     ./tlp.nix
-    ./home-manager.nix
-  ];
+  ] else []);
 }

@@ -1,5 +1,10 @@
-{
+{ hostname, ... }: {
   imports = [
+    ./git.nix
+    ./bat.nix
+  ] ++ (if hostname == "nixos-server" then [
+    ./server.nix
+  ] else if hostname == "nixos-laptop" then [
     ./shell.nix
     ./hyprland
     ./wofi
@@ -9,7 +14,5 @@
     ./nixvim.nix
     ./stylix.nix
     ./swaync.nix
-    ./git.nix
-    ./bat.nix
-  ];
+  ] else []);
 }

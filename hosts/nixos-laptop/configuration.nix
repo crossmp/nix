@@ -11,10 +11,6 @@
   
   networking.hostName = hostname;
 
-  # Enable the OpenSSH daemon.###########
-  services.openssh.enable = true;
-  #######################################
-
   system.stateVersion = stateVersion;
 }
 
