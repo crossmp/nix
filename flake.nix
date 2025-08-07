@@ -53,8 +53,8 @@
       pkgs = nixpkgs.legacyPackages.${system};
       extraSpecialArgs = {
         inherit inputs homeStateVersion user;
-        hostname = "nixos-laptop";  # HARDCODED FOR NOW, CHANGE
-        #hostname = "nixos-server";  # EDIT
+        #hostname = "nixos-laptop";  # HARDCODED FOR NOW, CHANGE
+        hostname = "nixos-server";  # EDIT
       };
       modules = [
         ./home-manager/home.nix
