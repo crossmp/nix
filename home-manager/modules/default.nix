@@ -15,4 +15,5 @@
     ./stylix.nix
     ./swaync.nix
   ] else []);
+  #];
 }

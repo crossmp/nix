@@ -1,4 +1,5 @@
-{ pkgs, hostname, ... }: {
+{ pkgs, hostname, ... }: 
+{
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
@@ -17,4 +18,5 @@
     hyprpicker
     grimblast
   ] else []);
+  #];
 }
