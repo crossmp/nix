@@ -9,5 +9,7 @@
     ./nixvim.nix
     ./stylix.nix
     ./swaync.nix
+    ./git.nix
+    ./bat.nix
   ];
 }
