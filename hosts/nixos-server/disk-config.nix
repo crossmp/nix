@@ -3,7 +3,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/disk/by-id/ata-CT240BX500SSD1_1920E182DD89";
+        device = "/dev/sda";  # Simplified - just use /dev/sda
         content = {
           type = "gpt";
           partitions = {
@@ -11,7 +11,7 @@
               priority = 1;
               name = "ESP";
               start = "1M";
-              end = "1G";
+              end = "512M";  # Smaller boot partition
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -23,13 +23,9 @@
             root = {
               size = "100%";
               content = {
-                type = "btrfs";
-                extraArgs = [ "-f" ]; # Override existing partition
+                type = "filesystem";
+                format = "ext4";  # Change to ext4
                 mountpoint = "/";
-                mountOptions = [
-                  "compress=zstd"
-                  "noatime"
-                ];
               };
             };
           };
