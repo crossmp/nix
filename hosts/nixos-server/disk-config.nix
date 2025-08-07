@@ -3,28 +3,19 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sda";  # Simplified - just use /dev/sda
+        device = "/dev/sda";
         content = {
-          type = "gpt";
+          type = "msdos";  # Use MBR instead of GPT
           partitions = {
-            ESP = {
-              priority = 1;
-              name = "ESP";
-              start = "1M";
-              end = "512M";  # Smaller boot partition
-              type = "EF00";
-              content = {
-                type = "filesystem";
-                format = "vfat";
-                mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
-              };
+            boot = {
+              size = "1M";
+              type = "ef02";  # BIOS boot partition
             };
             root = {
               size = "100%";
               content = {
                 type = "filesystem";
-                format = "ext4";  # Change to ext4
+                format = "ext4";
                 mountpoint = "/";
               };
             };
