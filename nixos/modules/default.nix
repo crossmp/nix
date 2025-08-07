@@ -7,12 +7,12 @@
     ./user.nix
     ./nix.nix
     ./ssh.nix
+    ./net.nix
   ] ++ (if hostname == "nixos-server" then [
 
   ] else if hostname == "nixos-laptop" then [
     ./audio.nix
     ./hyprland.nix
-    ./net.nix
     ./env.nix
     ./zram.nix
     ./nvidia.nix
