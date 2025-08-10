@@ -87,7 +87,11 @@
       nixosConfigurations = nixpkgs.lib.mapAttrs mkHost hosts;
 
       # Generate all home-manager configurations
-      homeConfigurations = nixpkgs.lib.mapAttrs 
-        (hostname: hostAttrs: mkHome hostname hostAttrs) hosts;
+      homeConfigurations = nixpkgs.lib.mapAttrs'
+        (hostname: hostAttrs: {
+          name = "${hostAttrs.user}@${hostname}";
+          value = mkHome hostname hostAttrs;
+      })
+      hosts;
     };
 }

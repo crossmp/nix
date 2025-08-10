@@ -3,20 +3,33 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sda";
+        device = "/dev/disk/by-id/nvme-Micron_2400_MTFDKBA512QFM_23184066D65E";
         content = {
-          type = "msdos";  # Use MBR instead of GPT
+          type = "gpt";
           partitions = {
-            boot = {
-              size = "1M";
-              type = "ef02";  # BIOS boot partition
+            ESP = {
+              priority = 1;
+              name = "ESP";
+              start = "1M";
+              end = "1G";
+              type = "EF00";
+              content = {
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
+                mountOptions = [ "umask=0077" ];
+              };
             };
             root = {
               size = "100%";
               content = {
-                type = "filesystem";
-                format = "ext4";
+                type = "btrfs";
+                extraArgs = [ "-f" ]; # Override existing partition
                 mountpoint = "/";
+                mountOptions = [
+                  "compress=zstd"
+                  "noatime"
+                ];
               };
             };
           };

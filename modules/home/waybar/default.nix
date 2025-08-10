@@ -1,1 +1,5 @@
-# ...existing code...
+{
+  programs.waybar = {
+    enable = true;
+  };
+}

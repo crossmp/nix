@@ -1,8 +1,8 @@
-{ pkgs, user, ... }: {
-	#programs.zsh.enable = true;
+{ pkgs, user, hostname, ... }: {
+	programs.zsh.enable = true;
 
 	users = {
-		#defaultUserShell = pkgs.zsh;
+		defaultUserShell = pkgs.zsh;
 		users.${user} = {
 			isNormalUser = true;
 			extraGroups = [ "wheel" "networkmanager" ];
@@ -12,5 +12,6 @@
 		};
 	};
 
-	services.getty.autologinUser = user;
+	# Auto-login only for non-WSL systems
+	services.getty.autologinUser = if (hostname == "nixos") then null else user;
 }

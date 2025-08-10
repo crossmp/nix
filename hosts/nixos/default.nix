@@ -3,10 +3,9 @@
   imports =
     [ 
       ./local-packages.nix
-  ../../modules/nixos/env.nix
-  ../../modules/nixos/home-manager.nix
-  ../../modules/nixos/nix.nix
-  ../../modules/nixos/user.nix
+      ../../modules/nixos/home-manager.nix
+      ../../modules/nixos/nix.nix
+      ../../modules/nixos/user.nix
     ];  
 
   wsl = {
@@ -14,6 +13,7 @@
     defaultUser = user;
     useWindowsDriver = true;
   };
+  # NixOS WSL VSCode Hack
   programs.nix-ld.enable = true;
 
   environment.systemPackages = [ pkgs.home-manager ];

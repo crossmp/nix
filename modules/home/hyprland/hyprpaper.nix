@@ -1,1 +1,5 @@
-# ...existing code...
+{
+  services.hyprpaper = {
+    enable = true;
+  };
+}

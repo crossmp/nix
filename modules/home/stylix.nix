@@ -38,6 +38,6 @@
 			package = pkgs.vanilla-dmz;
 		};
 
-		image = ./../../wallpapers/garrett-parker-DlkF4-dbCOU.jpg;
+		image = ./../../wallpapers/wallhaven-9o67yk_1920x1080.png;
 	};
 }
