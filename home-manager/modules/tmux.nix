@@ -67,7 +67,7 @@
       bind -n M-n new-window -c ~/.config/nvim "nvim -c 'Telescope find_files' init.lua"
       
       # Window/session management (keeping yours)
-      bind -n M-Enter new-window   # Alt+Enter = new window
+      bind -n M-n new-window   # Alt+Enter = new window
       bind -n M-c kill-pane       # Alt+c = close pane
       bind -n M-q kill-window     # Alt+q = close window
       bind -n M-Q kill-session    # Alt+Q = close session

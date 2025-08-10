@@ -1,9 +1,8 @@
 {
-  description = "My system flake config";
+  description = "My unified NixOS configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,45 +19,75 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
-
-  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs: let
-    system = "x86_64-linux";
-    nixosVersion = "25.05";
-    homeStateVersion = nixosVersion;
-    user = "matt";
-    
-    hosts = [
-      { hostname = "nixos-laptop"; stateVersion = nixosVersion; }
-      { hostname = "nixos-server"; stateVersion = nixosVersion; }
-    ];
-
-    makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {
-      system = system;
-      specialArgs = { 
-        inherit inputs stateVersion hostname user;
-      };
-      modules = [ 
-        ./hosts/${hostname}/configuration.nix
-        disko.nixosModules.disko
-      ];
-    };
-  in {
-    nixosConfigurations = nixpkgs.lib.foldl' (configs: host:
-      configs // {
-        "${host.hostname}" = makeSystem { inherit (host) hostname stateVersion; };
-      }) {} hosts;
-
-    homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.${system};
-      extraSpecialArgs = {
-        inherit inputs homeStateVersion user;
-        #hostname = "nixos-laptop";  # HARDCODED FOR NOW, CHANGE
-        hostname = "nixos-server";  # EDIT
-      };
-      modules = [
-        ./home-manager/home.nix
-      ];
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
+  outputs = { self, nixpkgs, home-manager, disko, nixos-wsl, ... }@inputs:
+    let
+      system = "x86_64-linux";
+      stateVersion = "25.05";
+      
+      # Define all hosts with their specific attributes
+      hosts = {
+        "nixos-laptop" = {
+          user = "matt";
+          system = system;
+        };
+        "nixos-server" = {
+          user = "matt";
+          system = system;
+        };
+        # WSL
+        "nixos" = {
+          user = "nixos";
+          system = system;
+          wsl = true;
+        };
+      };
+
+      # Helper function to create NixOS configurations
+      mkHost = hostname: hostAttrs:
+        nixpkgs.lib.nixosSystem {
+          system = hostAttrs.system;
+          specialArgs = {
+            inherit inputs system stateVersion hostname;
+            user = hostAttrs.user;
+          };
+          modules = [
+            # Base modules
+            ./hosts/${hostname}
+            # Only include disko for non-WSL systems
+            (if !(hostAttrs.wsl or false) then disko.nixosModules.disko else {})
+          ] 
+          # Add WSL module if needed
+          ++ (if hostAttrs.wsl or false then [nixos-wsl.nixosModules.default] else []);
+        };
+
+      # Helper function for home-manager configurations
+      mkHome = hostname: hostAttrs:
+        let 
+          username = hostAttrs.user; 
+        in 
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${hostAttrs.system};
+          extraSpecialArgs = {
+            inherit inputs system hostname;
+            user = username;
+            homeStateVersion = stateVersion;
+          };
+          modules = [
+            ./hosts/${hostname}/home.nix
+          ];
+        };
+    in {
+      # Generate all NixOS configurations
+      nixosConfigurations = nixpkgs.lib.mapAttrs mkHost hosts;
+
+      # Generate all home-manager configurations
+      homeConfigurations = nixpkgs.lib.mapAttrs 
+        (hostname: hostAttrs: mkHome hostname hostAttrs) hosts;
+    };
 }
