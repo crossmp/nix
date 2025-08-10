@@ -11,9 +11,6 @@
             rebuild = "sudo nixos-rebuild switch --flake ~/nix#${hostname}";
             home-rebuild = "home-manager switch --flake ~/nix#${user}@${hostname}";
             gc = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d";
-            update-flake = "nix flake update ~/nix";
-            update-system = "nix flake update ~/nix && sudo nixos-rebuild switch --flake ~/nix#${hostname}";
-            update-home = "nix flake update ~/nix && home-manager switch --flake ~/nix#${user}@${hostname}";
             clean = "nix-store --gc && nix-collect-garbage -d";    
         };
         initContent = ''
