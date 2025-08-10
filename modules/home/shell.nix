@@ -19,12 +19,12 @@
 				tmux attach-session -t default || tmux new-session -s default
 			fi
 
-			# Auto-launch UWSM/Hyprland only for matt@nixos-laptop
-			if [ "$USER" = "matt" ] && [ "$HOSTNAME" = "nixos-laptop" ]; then
-				if uwsm check may-start > /dev/null && uwsm select; then
-					exec systemd-cat -t uwsm_start uwsm start default
-				fi
-			fi
+			## Auto-launch UWSM/Hyprland only for matt@nixos-laptop
+			#if [ "$USER" = "matt" ] && [ "$HOSTNAME" = "nixos-laptop" ]; then
+			#	if uwsm check may-start > /dev/null && uwsm select; then
+			#		exec systemd-cat -t uwsm_start uwsm start default
+			#	fi
+			#fi
 		'';
 	};
 }

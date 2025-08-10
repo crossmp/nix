@@ -11,9 +11,9 @@
     ../../modules/home/shell.nix
     ../../modules/home/alacritty.nix
     ../../modules/home/bat.nix
-    ../../modules/home/shell.nix
     ../../modules/home/stylix.nix
     ../../modules/home/swaync.nix
+    ../../modules/home/zprofile.nix
   ];
 
   home = {
