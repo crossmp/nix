@@ -10,10 +10,22 @@
 			# Better colors for alacritty
 			set -as terminal-features ",alacritty*:RGB"
       
-			# Status bar with time (keeping it simple like gruvbox)
+			# Kanagawa-inspired status bar (dark with bright accents)
+			set -g status-bg '#1f1f28'           # Dark background
+			set -g status-fg '#dcd7ba'           # Light foreground
 			set -g status-interval 1
-			set -g status-right '#[fg=colour214] %d/%m #[fg=colour109] %H:%M:%S '
+			set -g status-left '#[fg=#7e9cd8,bold] #{session_name} #[fg=#54546d]│ '
+			set -g status-right '#[fg=#e6c384] %d/%m #[fg=#7fb4ca] %H:%M:%S '
 			set -g status-right-length 30
+			set -g status-left-length 20
+			
+			# Window status
+			setw -g window-status-current-format '#[fg=#ff9e3b,bold] #I:#W '
+			setw -g window-status-format '#[fg=#727169] #I:#W '
+			
+			# Pane borders (bright for visibility)
+			set -g pane-border-style 'fg=#54546d'
+			set -g pane-active-border-style 'fg=#7e9cd8'
       
 			# Reload config with Alt+r
 			bind -n M-r source-file ~/.config/tmux/tmux.conf \; display "Reloaded!"
@@ -73,18 +85,18 @@
 			bind -n M-Q kill-session    # Alt+Q = close session
 		'';
 		plugins = with pkgs; [
-			tmuxPlugins.gruvbox  # Keeping your gruvbox theme
-			# {
-			#   plugin = tmuxPlugins.resurrect;
-			#   extraConfig = "set -g @resurrect-strategy-nvim 'session'";  # Save nvim sessions
-			# }
-			# {
-			#   plugin = tmuxPlugins.continuum;
-			#   extraConfig = ''
-			#     set -g @continuum-restore 'on'        # Auto-restore on tmux start
-			#     set -g @continuum-save-interval '60'  # Auto-save every 60 minutes
-			#   '';
-			# }
+			# Removed gruvbox, using custom Kanagawa colors above
+			{
+			  plugin = tmuxPlugins.resurrect;
+			  extraConfig = "set -g @resurrect-strategy-nvim 'session'";  # Save nvim sessions
+			}
+			{
+			  plugin = tmuxPlugins.continuum;
+			  extraConfig = ''
+			    set -g @continuum-restore 'on'        # Auto-restore on tmux start
+			    set -g @continuum-save-interval '15'  # Auto-save every 15 minutes (good for WSL)
+			  '';
+			}
 		];
 	};
 }
