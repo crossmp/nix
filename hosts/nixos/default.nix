@@ -3,10 +3,10 @@
   imports =
     [ 
       ./local-packages.nix
-      ../../nixos/modules/env.nix
-      ../../nixos/modules/home-manager.nix
-      ../../nixos/modules/nix.nix
-      ../../nixos/modules/user.nix
+  ../../modules/nixos/env.nix
+  ../../modules/nixos/home-manager.nix
+  ../../modules/nixos/nix.nix
+  ../../modules/nixos/user.nix
     ];  
 
   wsl = {
@@ -14,6 +14,7 @@
     defaultUser = user;
     useWindowsDriver = true;
   };
+  programs.nix-ld.enable = true;
 
   environment.systemPackages = [ pkgs.home-manager ];
   

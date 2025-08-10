@@ -2,18 +2,18 @@
 
   imports = [
     ./home-packages.nix
-    ../../home-manager/modules/hyprland
-    ../../home-manager/modules/waybar
-    ../../home-manager/modules/wofi
-    ../../home-manager/modules/git.nix
-    ../../home-manager/modules/nixvim.nix
-    ../../home-manager/modules/tmux.nix
-    ../../home-manager/modules/zsh.nix
-    ../../home-manager/modules/alacritty.nix
-    ../../home-manager/modules/bat.nix
-    ../../home-manager/modules/shell.nix
-    ../../home-manager/modules/stylix.nix
-    ../../home-manager/modules/swaync.nix
+  ../../modules/home/hyprland
+  ../../modules/home/waybar
+  ../../modules/home/wofi
+  ../../modules/home/git.nix
+  ../../modules/home/nixvim.nix
+  ../../modules/home/tmux.nix
+  ../../modules/home/zsh.nix
+  ../../modules/home/alacritty.nix
+  ../../modules/home/bat.nix
+  ../../modules/home/shell.nix
+  ../../modules/home/stylix.nix
+  ../../modules/home/swaync.nix
   ];
 
   home = {

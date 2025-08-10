@@ -2,10 +2,10 @@
 
   imports = [
     ./home-packages.nix
-    ../../home-manager/modules/git.nix
-    ../../home-manager/modules/nixvim.nix
-    ../../home-manager/modules/tmux.nix
-    ../../home-manager/modules/zsh.nix
+  ../../modules/home/git.nix
+  ../../modules/home/nixvim.nix
+  ../../modules/home/tmux.nix
+  ../../modules/home/zsh.nix
   ];
 
   home = {

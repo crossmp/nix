@@ -1,5 +1,0 @@
-{
-  services.asusd = {
-    enable = true;
-  };
-}
