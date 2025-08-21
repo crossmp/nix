@@ -10,93 +10,62 @@
 			# Better colors for alacritty
 			set -as terminal-features ",alacritty*:RGB"
       
-			# Kanagawa-inspired status bar (dark with bright accents)
-			set -g status-bg '#1f1f28'           # Dark background
-			set -g status-fg '#dcd7ba'           # Light foreground
+			# Ayu Dark inspired status bar (simple)
+			set -g status-bg '#0f1419'           # Dark background
+			set -g status-fg '#bfbab0'           # Light foreground
 			set -g status-interval 1
-			set -g status-left '#[fg=#7e9cd8,bold] #{session_name} #[fg=#54546d]│ '
-			set -g status-right '#[fg=#e6c384] %d/%m #[fg=#7fb4ca] %H:%M:%S '
+			set -g status-right '#[fg=#ffb454] %d/%m #[fg=#59c2ff] %H:%M:%S '
 			set -g status-right-length 30
-			set -g status-left-length 20
 			
-			# Window status
-			setw -g window-status-current-format '#[fg=#ff9e3b,bold] #I:#W '
-			setw -g window-status-format '#[fg=#727169] #I:#W '
+			# Simple pane borders
+			set -g pane-border-style 'fg=#323842'
+			set -g pane-active-border-style 'fg=#ffb454'
 			
-			# Pane borders (bright for visibility)
-			set -g pane-border-style 'fg=#54546d'
-			set -g pane-active-border-style 'fg=#7e9cd8'
-      
-			# Reload config with Alt+r
-			bind -n M-r source-file ~/.config/tmux/tmux.conf \; display "Reloaded!"
-      
-			# Window navigation (keeping your existing ones)
-			bind C-p previous-window
-			bind C-n next-window
-    
-			# Quick window switching with Alt+number (keeping yours)
+			# ===== WINDOW/TAB MANAGEMENT =====
+			# Alt+c = Create new window (like new tab)
+			bind -n M-c new-window
+			
+			# Alt+number = Switch to window number
 			bind -n M-1 select-window -t 1
 			bind -n M-2 select-window -t 2
 			bind -n M-3 select-window -t 3
 			bind -n M-4 select-window -t 4
 			bind -n M-5 select-window -t 5
-			bind -n M-6 select-window -t 6
-			bind -n M-7 select-window -t 7
-			bind -n M-8 select-window -t 8
-			bind -n M-9 select-window -t 9
-    
-			# Vim-style pane navigation (hjkl instead of arrows)
-			bind -n M-h select-pane -L    # Alt+h = left pane (vim left)
-			bind -n M-l select-pane -R    # Alt+l = right pane (vim right)
-			bind -n M-k select-pane -U    # Alt+k = up pane (vim up)
-			bind -n M-j select-pane -D    # Alt+j = down pane (vim down)
-      
-			# Keep your arrow keys too for transition period
-			bind -n M-Left select-pane -L
-			bind -n M-Right select-pane -R
-			bind -n M-Up select-pane -U
-			bind -n M-Down select-pane -D
-    
-			# Vim-style pane resizing (Shift + hjkl)
-			bind -n M-S-h resize-pane -L 5   # Alt+Shift+h = shrink left
-			bind -n M-S-l resize-pane -R 5   # Alt+Shift+l = expand right  
-			bind -n M-S-k resize-pane -U 3   # Alt+Shift+k = shrink up
-			bind -n M-S-j resize-pane -D 3   # Alt+Shift+j = expand down
-      
-			# Keep your old resize keys too
-			bind -n M-S-Left resize-pane -L 5
-			bind -n M-S-Right resize-pane -R 5
-			bind -n M-S-Up resize-pane -U 3
-			bind -n M-S-Down resize-pane -D 3
-    
-			# Split windows (keeping your binds)
-			bind -n M-s split-window -v  # Alt+s = horizontal split
-			bind -n M-v split-window -h  # Alt+v = vertical split
-    
-			# Your custom workspace shortcuts (keeping as-is)
-			bind -n M-o new-window -c ~/para "nvim -c 'Telescope find_files' '0 Inbox/todolist.md'"
-			bind -n M-f new-window -c ~/flake "nvim -c 'Telescope find_files' flake.nix"
-			bind -n M-n new-window -c ~/.config/nvim "nvim -c 'Telescope find_files' init.lua"
-      
-			# Window/session management (keeping yours)
-			bind -n M-n new-window   # Alt+Enter = new window
-			bind -n M-c kill-pane       # Alt+c = close pane
-			bind -n M-q kill-window     # Alt+q = close window
-			bind -n M-Q kill-session    # Alt+Q = close session
+			
+			# Alt+n/p = Next/Previous window
+			bind -n M-n next-window
+			bind -n M-p previous-window
+			
+			# ===== PANE SPLITTING (Perfect for side-by-side preview!) =====
+			# Alt+v = Split vertically (side by side) - PERFECT for markdown + preview
+			bind -n M-v split-window -h
+			
+			# Alt+s = Split horizontally (top/bottom)
+			bind -n M-s split-window -v
+			
+			# ===== VIM-STYLE PANE NAVIGATION =====
+			# Alt+hjkl = Move between panes (vim style)
+			bind -n M-h select-pane -L    # Go left
+			bind -n M-j select-pane -D    # Go down  
+			bind -n M-k select-pane -U    # Go up
+			bind -n M-l select-pane -R    # Go right
+			
+			# ===== VIM-STYLE PANE RESIZING =====
+			# Alt+Shift+hjkl = Resize panes
+			bind -n M-H resize-pane -L 5   # Shrink left
+			bind -n M-J resize-pane -D 3   # Shrink down
+			bind -n M-K resize-pane -U 3   # Shrink up  
+			bind -n M-L resize-pane -R 5   # Shrink right
+			
+			# ===== QUICK ACTIONS =====
+			# Alt+x = Close current pane
+			bind -n M-x kill-pane
+			
+			# Alt+r = Reload config
+			bind -n M-r source-file ~/.config/tmux/tmux.conf \; display "Reloaded!"
 		'';
 		plugins = with pkgs; [
-			# Removed gruvbox, using custom Kanagawa colors above
-			{
-			  plugin = tmuxPlugins.resurrect;
-			  extraConfig = "set -g @resurrect-strategy-nvim 'session'";  # Save nvim sessions
-			}
-			{
-			  plugin = tmuxPlugins.continuum;
-			  extraConfig = ''
-			    set -g @continuum-restore 'on'        # Auto-restore on tmux start
-			    set -g @continuum-save-interval '15'  # Auto-save every 15 minutes (good for WSL)
-			  '';
-			}
+			# Keep it simple for now
 		];
 	};
 }

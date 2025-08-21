@@ -1,0 +1,57 @@
+[terminal.shell]
+program = "wsl"
+args = ["-d", "NixOS", "--cd", "~"]
+
+[window]
+opacity = 0.8  # Back to your original transparency 
+# Removed padding and startup_mode - back to defaults
+
+[font]
+normal = { family = "JetBrains Mono", style = "Regular" }
+bold = { family = "JetBrains Mono", style = "Bold" }
+italic = { family = "JetBrains Mono", style = "Italic" }
+size = 11.0
+
+# Ayu Dark color scheme (bright, clean, distinct)
+[colors.primary]
+background = "#0f1419"  # Ayu dark background
+foreground = "#bfbab0"  # Light text
+
+[colors.normal]
+black   = "#000000"
+red     = "#f07178"     # Bright coral red
+green   = "#b8cc52"     # Bright green
+yellow  = "#ffb454"     # Bright orange-yellow
+blue    = "#59c2ff"     # Bright cyan-blue
+magenta = "#d2a6ff"     # Bright purple
+cyan    = "#95e6cb"     # Bright mint
+white   = "#ffffff"
+
+[colors.bright]
+black   = "#323842"
+red     = "#ff6565"     # Very bright red
+green   = "#7df71d"     # Very bright green  
+yellow  = "#ffb454"     # Very bright yellow
+blue    = "#59c2ff"     # Very bright blue
+magenta = "#d2a6ff"     # Very bright purple
+cyan    = "#95e6cb"     # Very bright cyan
+white   = "#ffffff"
+
+[cursor]
+style = "Block"
+unfocused_hollow = true
+
+[scrolling]
+history = 10000
+
+[selection]
+save_to_clipboard = true  # Auto-copy on selection
+
+[keyboard]
+bindings = [
+    { key = "C", mods = "Control|Shift", action = "Copy" },
+    { key = "V", mods = "Control|Shift", action = "Paste" },
+    { key = "Plus", mods = "Control", action = "IncreaseFontSize" },
+    { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
+    { key = "Key0", mods = "Control", action = "ResetFontSize" },
+]

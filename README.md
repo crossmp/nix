@@ -47,7 +47,7 @@ home-manager switch --flake ~/nix#<user>@<hostname>
 
 ### Cleanup
 ```bash
-gc                   # Garbage collect old generations
+nixgc                # Garbage collect old generations
 clean                # Deep clean nix store
 ```
 
